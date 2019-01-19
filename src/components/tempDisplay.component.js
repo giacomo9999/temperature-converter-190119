@@ -1,15 +1,26 @@
 import React, { Component } from "react";
-import { Container, Card } from "semantic-ui-react";
+import { Container, Card, Input, Header, Form } from "semantic-ui-react";
 
 class TempDisplay extends Component {
+  handleChange = e => {
+    console.log("Value changing..." + e.target.value);
+    // this.props.convertToKelvin(e.target.value);
+  };
+
   render() {
     return (
       <Container text>
-        <br />
         <Card centered={true}>
           <Card.Content>
-            <Card.Header>{this.props.scale}</Card.Header>
-            <Card.Meta>{this.props.transFunc(this.props.temp)}</Card.Meta>
+            <Header as="h3">{`Temperature (${this.props.scale})`}</Header>
+            <Card.Meta>
+              <Input
+                fluid
+                // placeholder={"Blah"}
+                value={this.props.convertToLocal(this.props.temp)}
+                onChange={this.handleChange}
+              />
+            </Card.Meta>
           </Card.Content>
         </Card>
       </Container>
